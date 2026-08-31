@@ -1,0 +1,213 @@
+/* ============================================================================
+   آموزش وب فارسی — 5-playground.css
+   چیدمان مکان‌نما و کامپوننت‌های نمونهٔ کد (کد، پیش‌نمایش، کپی و اجرا)
+   فاز ۰۴ پیشفرض تعاملی واقعی را جایگزین خواهد کرد.
+   ============================================================================ */
+
+/* ---------------------------------------------------------------
+   Code example component
+   --------------------------------------------------------------- */
+.code-example {
+  margin-block: var(--space-5) 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.code-example-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface-2);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.code-example-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-heading);
+  min-width: 0;
+}
+
+.code-example-title svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.code-example-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.code-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-xs);
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.code-tool:hover {
+  background: var(--color-surface);
+  color: var(--color-heading);
+}
+
+.code-tool svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.code-example-body {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.code-editor {
+  min-width: 0;
+  position: relative;
+  background: var(--color-code-bg);
+}
+
+.code-editor__inner {
+  padding: var(--space-4);
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+}
+
+.code-editor pre,
+.code-editor code {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-code-text);
+  margin: 0;
+}
+
+.code-preview {
+  min-width: 0;
+  border-block-start: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.code-preview-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-block-end: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.code-preview-bar svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-primary);
+}
+
+.code-preview-frame {
+  width: 100%;
+  height: 13rem;
+  border: 0;
+  background: var(--color-surface);
+  display: block;
+}
+
+.code-example-foot {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+  border-block-start: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+}
+
+.code-example-foot p {
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------
+   Copy feedback
+   --------------------------------------------------------------- */
+.copy-feedback {
+  position: fixed;
+  bottom: var(--space-5);
+  left: 50%;
+  right: auto;
+  translate: -50% 0;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--color-heading);
+  color: var(--color-bg);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  box-shadow: var(--shadow-md);
+  z-index: 3000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.copy-feedback.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ---------------------------------------------------------------
+   Placeholder playground (used on non-lesson pages)
+   --------------------------------------------------------------- */
+.playground-placeholder {
+  margin-block-start: var(--space-5);
+}
+
+.playground-frame {
+  width: 100%;
+  min-height: 15rem;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+}
+
+/* ---------------------------------------------------------------
+   Responsive
+   --------------------------------------------------------------- */
+@media (min-width: 64rem) {
+  .code-example-body {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .code-preview {
+    border-block-start: 0;
+    border-inline-start: 1px solid var(--color-border);
+  }
+}
+
+@media (max-width: 40rem) {
+  .code-example-actions .code-tool span {
+    display: none;
+  }
+
+  .code-example-actions .code-tool svg {
+    margin: 0;
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "persian-learning-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "پلتفرم فارسی آموزش HTML و CSS — فاز ۰۱: فونداسیون و سیستم رابط کاربری",
+  "scripts": {
+    "serve": "python3 -m http.server 5173 --directory 1-frontend"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
