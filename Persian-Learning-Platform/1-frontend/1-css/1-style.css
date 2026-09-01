@@ -677,8 +677,8 @@ p {
    --------------------------------------------------------------- */
 .back-to-top {
   position: fixed;
-  inset-block-end: var(--space-5);
-  inset-inline-end: var(--space-5);
+  bottom: var(--space-5);
+  right: var(--space-5);
   z-index: 900;
   width: 2.75rem;
   height: 2.75rem;
