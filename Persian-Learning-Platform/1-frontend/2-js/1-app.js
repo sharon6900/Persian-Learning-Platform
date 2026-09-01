@@ -370,6 +370,60 @@
   };
 
   /* -------------------------------------------------------------
+     Back to top
+     The button is injected once so every existing shell page uses
+     the same consistent component without duplicated markup.
+     ------------------------------------------------------------- */
+  const initBackToTop = () => {
+    const SCROLL_THRESHOLD = 400;
+
+    let button = qs("[data-back-to-top]");
+    if (!button) {
+      button = document.createElement("button");
+      button.type = "button";
+      button.className = "back-to-top";
+      button.setAttribute("data-back-to-top", "");
+      button.setAttribute("aria-label", "بازگشتن به بالای صفحه");
+      button.setAttribute("aria-hidden", "true");
+      button.setAttribute("tabindex", "-1");
+      button.innerHTML =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>';
+      document.body.appendChild(button);
+    }
+
+    const setVisibility = (visible) => {
+      button.classList.toggle("is-visible", visible);
+      if (visible) {
+        button.removeAttribute("aria-hidden");
+        button.setAttribute("tabindex", "0");
+      } else {
+        button.setAttribute("aria-hidden", "true");
+        button.setAttribute("tabindex", "-1");
+      }
+    };
+
+    const update = () => {
+      setVisibility(window.scrollY > SCROLL_THRESHOLD);
+    };
+
+    const prefersReducedMotion = () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: prefersReducedMotion() ? "auto" : "smooth",
+      });
+    };
+
+    button.addEventListener("click", scrollToTop);
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+    update();
+  };
+
+  /* -------------------------------------------------------------
      Reveal decorative info note on nav shell
      ------------------------------------------------------------- */
   const initInfoNote = () => {
@@ -408,6 +462,7 @@
     initRunButtons();
     initAuthForms();
     initProfileForms();
+    initBackToTop();
     initInfoNote();
   };
 
