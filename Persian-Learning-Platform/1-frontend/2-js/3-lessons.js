@@ -97,7 +97,7 @@
         {
           type: "example",
           title: "اولین سند HTML",
-          code: "<!DOCTYPE html>\n<html lang=\"fa\">\n  <head>\n    <meta charset=\"UTF-8\">\n    <title>صفحهٔ من</title>\n  </head>\n  <body>\n    <h1>سلام دنیا</h1>\n    <p>این اولین صفحهٔ وب من است.</p>\n  </body>\n</html>",
+          code: "<!DOCTYPE html>\n<html lang=\"fa\">\n  <head>\n    <meta charset=\"UTF-8\">\n    <title>صفحهٔ من</title>\n  </head>\n  <body>\n    <h1>آشنایی با HTML</h1>\n    <p>این اولین صفحهٔ وب من است؛ HTML ساختار محتوا را می‌سازد.</p>\n  </body>\n</html>",
           desc: "این ساختار پایه را در همهٔ درس‌ها می‌بینید.",
         },
         {
@@ -1540,6 +1540,55 @@
   /* ---------------------------------------------------------------
      Render helpers
      --------------------------------------------------------------- */
+  const highlightHtml = (source) => {
+    const highlightTag = (tag) => {
+      const match = tag.match(/^(<\/?)([A-Za-z][\w:-]*)([\s\S]*?)(\/?>)$/);
+      if (!match) return escapeHtml(tag);
+      const [, opener, name, attributes, closer] = match;
+      let cursor = 0;
+      let highlightedAttributes = "";
+      const attributePattern = /([:\w-]+)(\s*=\s*)("[^"]*"|'[^']*'|[^\s]+)/g;
+      let attributeMatch;
+      while ((attributeMatch = attributePattern.exec(attributes))) {
+        highlightedAttributes += escapeHtml(attributes.slice(cursor, attributeMatch.index));
+        highlightedAttributes += `<span class="syntax-attribute">${escapeHtml(attributeMatch[1])}</span>`;
+        highlightedAttributes += escapeHtml(attributeMatch[2]);
+        highlightedAttributes += `<span class="syntax-value">${escapeHtml(attributeMatch[3])}</span>`;
+        cursor = attributePattern.lastIndex;
+      }
+      highlightedAttributes += escapeHtml(attributes.slice(cursor));
+      return `<span class="syntax-tag">${escapeHtml(opener)}${escapeHtml(name)}${highlightedAttributes}${escapeHtml(closer)}</span>`;
+    };
+
+    const tokenPattern = /<!--[\s\S]*?-->|<!DOCTYPE\s+[^>]*>|<\/?[A-Za-z][^>]*>/gi;
+    let result = "";
+    let cursor = 0;
+    let token;
+    while ((token = tokenPattern.exec(source))) {
+      const text = source.slice(cursor, token.index);
+      if (text) result += `<span class="syntax-text">${escapeHtml(text)}</span>`;
+      const value = token[0];
+      if (/^<!--/.test(value)) {
+        result += `<span class="syntax-comment">${escapeHtml(value)}</span>`;
+      } else if (/^<!DOCTYPE/i.test(value)) {
+        result += `<span class="syntax-doctype">${escapeHtml(value)}</span>`;
+      } else {
+        result += highlightTag(value);
+      }
+      cursor = tokenPattern.lastIndex;
+    }
+    const remainder = source.slice(cursor);
+    if (remainder) result += `<span class="syntax-text">${escapeHtml(remainder)}</span>`;
+    return result;
+  };
+
+  const previewDocument = (source) => {
+    const style = `<style>html,body{margin:0;padding:0;background:#fff;color:#172033;font-family:Arial,"Segoe UI",sans-serif}body{padding:1.25rem;line-height:1.7}h1,h2,h3{color:#0f172a;margin:0 0 .65rem}p{margin:0 0 .8rem;color:#334155}a{color:#075eaa}</style>`;
+    return /<head[\s>]/i.test(source)
+      ? source.replace(/<\/head>/i, `${style}</head>`)
+      : `${style}${source}`;
+  };
+
   const renderContentBlock = (block, index) => {
     switch (block.type) {
       case "h2":
@@ -1565,7 +1614,7 @@
         const id = `lesson-example-${index}`;
         const codeId = `${id}-code`;
         const previewId = `${id}-preview`;
-        const code = escapeHtml(block.code);
+        const code = highlightHtml(block.code);
         const copyText = escapeAttr(block.code);
         return `<div class="code-example" data-code-example>
           <div class="code-example-head">
@@ -1796,7 +1845,7 @@
           <p class="exercise-text">${escapeHtml(lesson.exercise.prompt)}</p>
           <div class="code-example playground-placeholder">
             <div class="playground-frame">
-              <pre class="exercise-starter"><code>${escapeHtml(lesson.exercise.starterCode)}</code></pre>
+              <pre class="exercise-starter"><code>${highlightHtml(lesson.exercise.starterCode)}</code></pre>
             </div>
           </div>
         </div>
@@ -1826,7 +1875,7 @@
     qsa(".code-preview-frame", content).forEach((frame) => {
       const match = frame.id.match(/lesson-example-(\d+)/);
       const example = match ? exampleMap.get(Number(match[1])) : null;
-      if (example) frame.srcdoc = example.code;
+      if (example) frame.srcdoc = previewDocument(example.code);
     });
 
     const completion = qs("[data-lesson-complete]", content);

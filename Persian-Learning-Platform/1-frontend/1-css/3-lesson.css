@@ -145,6 +145,14 @@
   margin-block-end: var(--space-4);
 }
 
+.lesson-prose > .code-example {
+  margin-block-end: var(--space-5);
+}
+
+.lesson-prose > .alert + .alert {
+  margin-block-start: var(--space-3);
+}
+
 .prose code {
   font-family: var(--font-mono);
   font-size: 0.9em;
@@ -537,7 +545,35 @@
    Syntax blocks
    --------------------------------------------------------------- */
 .syntax-block {
-  margin-block-end: var(--space-4);
+  margin-block-end: var(--space-5);
+}
+
+/* Token colours keep the HTML structure legible without colouring the
+   complete code block as one undifferentiated string. */
+.syntax-tag {
+  color: #38bdf8;
+}
+
+.syntax-attribute {
+  color: #fbbf24;
+}
+
+.syntax-value {
+  color: #a7f3d0;
+}
+
+.syntax-text {
+  color: var(--color-code-text);
+}
+
+.syntax-comment {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.syntax-doctype {
+  color: #c4b5fd;
+  font-weight: 700;
 }
 
 .syntax-title {

@@ -108,6 +108,19 @@
     const overlay = qs("[data-lesson-overlay]");
     const openers = qsa("[data-lesson-sidebar-open]");
     const closers = qsa("[data-lesson-sidebar-close]");
+    const isDesktop = () => window.matchMedia
+      ? window.matchMedia("(min-width: 64rem)").matches
+      : window.innerWidth >= 1024;
+
+    const syncViewportAccessibility = () => {
+      if (isDesktop()) {
+        sidebar.setAttribute("aria-hidden", "false");
+        sidebar.removeAttribute("inert");
+      } else if (!sidebar.classList.contains("is-open")) {
+        sidebar.setAttribute("aria-hidden", "true");
+        sidebar.setAttribute("inert", "");
+      }
+    };
 
     const syncExpanded = (expanded) => {
       openers.forEach((button) => button.setAttribute("aria-expanded", expanded ? "true" : "false"));
@@ -131,8 +144,13 @@
         setOpen(overlay, false);
         overlay.hidden = true;
       }
-      sidebar.setAttribute("aria-hidden", "true");
-      sidebar.setAttribute("inert", "");
+      if (isDesktop()) {
+        sidebar.setAttribute("aria-hidden", "false");
+        sidebar.removeAttribute("inert");
+      } else {
+        sidebar.setAttribute("aria-hidden", "true");
+        sidebar.setAttribute("inert", "");
+      }
       syncExpanded(false);
       document.body.style.overflow = "";
     };
@@ -140,6 +158,8 @@
     openers.forEach((button) => button.addEventListener("click", open));
     closers.forEach((button) => button.addEventListener("click", close));
     syncExpanded(false);
+    syncViewportAccessibility();
+    window.addEventListener("resize", syncViewportAccessibility);
 
     if (overlay) overlay.addEventListener("click", close);
 
