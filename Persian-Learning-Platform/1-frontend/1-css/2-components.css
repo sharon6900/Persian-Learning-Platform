@@ -49,6 +49,10 @@
 
 .btn-primary:hover {
   background: var(--color-primary-strong);
+  /* Preserve the contrast color on hover: the global `a:hover` rule
+     (higher specificity than `.btn-primary`) would otherwise override the
+     text color with the same value as the hover background. */
+  color: var(--color-primary-contrast);
 }
 
 .btn-secondary {
