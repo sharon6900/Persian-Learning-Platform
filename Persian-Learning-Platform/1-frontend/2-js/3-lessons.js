@@ -1485,9 +1485,95 @@
   ];
 
   /* ---------------------------------------------------------------
+     CSS curriculum
+     --------------------------------------------------------------- */
+  const cssSections = [
+    { id: "foundations", title: "پایه‌های CSS" },
+    { id: "visuals", title: "رنگ، متن و ظاهر" },
+    { id: "box-model", title: "مدل جعبه" },
+    { id: "layout", title: "چیدمان" },
+    { id: "selectors", title: "انتخاب‌گرها و تعامل" },
+    { id: "components", title: "اجزای رابط" },
+    { id: "responsive", title: "واکنش‌گرا" },
+    { id: "motion", title: "حرکت و کیفیت کد" },
+  ];
+
+  const cssTopicData = [
+    ["introduction", "مقدمه‌ای بر CSS", "با نقش CSS در ظاهر و چیدمان صفحه آشنا شوید.", "foundations", "foundations", "CSS ظاهر صفحه را از ساختار HTML جدا می‌کند و تغییرات هماهنگ را ساده‌تر می‌سازد.", "h1 { color: #0f766e; }", "یک عنوان سبز و خوانا ظاهر می‌شود.", "CSS جای HTML را نمی‌گیرد؛ هرکدام مسئولیت جداگانه‌ای دارند.", "نوشتن styleهای تکراری در هر عنصر، نگهداری را دشوار می‌کند."],
+    ["how-css-works", "CSS چگونه کار می‌کند؟", "رابطهٔ قانون، انتخاب‌گر و آبشار را درک کنید.", "foundations", "foundations", "مرورگر قوانین CSS را پیدا می‌کند، اولویت آن‌ها را می‌سنجد و سپس مقدار نهایی را به عنصر می‌دهد.", "p { color: #334155; }", "پاراگراف با رنگ تعیین‌شده نمایش داده می‌شود.", "ترتیب، ویژگی و specificity در نتیجه اثر دارند.", "هر قانون دیرتر را همیشه برنده فرض نکنید؛ specificity هم مهم است."],
+    ["syntax", "سینتکس CSS", "قالب انتخاب‌گر، ویژگی و مقدار را بنویسید.", "foundations", "foundations", "هر declaration یک ویژگی و مقدار دارد و با نقطه‌ویرگول از declaration بعدی جدا می‌شود.", ".card { padding: 1rem; border-radius: .5rem; }", "کارت فاصلهٔ داخلی و گوشه‌های گرد پیدا می‌کند.", "برای خوانایی، هر ویژگی را در خط جدا بنویسید.", "جا انداختن آکولاد یا نقطه‌ویرگول، عیب‌یابی را سخت می‌کند."],
+    ["selectors", "انتخاب‌گرهای CSS", "عنصرهای هدف را با انتخاب‌گرهای مناسب پیدا کنید.", "foundations", "foundations", "انتخاب‌گر تعیین می‌کند قانون روی کدام عنصرها اعمال شود؛ از انتخاب‌گر عنصر، کلاس و id با دقت استفاده کنید.", ".notice { color: #b45309; }", "متن عنصر notice نارنجی می‌شود.", "کلاس برای الگوهای قابل استفادهٔ مجدد مناسب است.", "استفادهٔ افراطی از id انعطاف‌پذیری را کم می‌کند."],
+    ["comments", "نظرها در CSS", "کد را با commentهای مفید مستندسازی کنید.", "foundations", "foundations", "نظر CSS بین /* و */ نوشته می‌شود و مرورگر آن را نمایش نمی‌دهد.", "/* رنگ برند */\n.brand { color: #0f766e; }", "فقط رنگ برند دیده می‌شود و متن نظر نه.", "نظر باید دلیل تصمیم را توضیح دهد، نه چیزی بدیهی را تکرار کند.", "از // استفاده نکنید؛ این نشانه در CSS معمولی معتبر نیست."],
+    ["colors", "رنگ‌ها", "رنگ متن و پس‌زمینه را با روش‌های رایج تنظیم کنید.", "foundations", "visuals", "نام رنگ، HEX، RGB و HSL راه‌هایی برای بیان رنگ‌اند؛ کنتراست را همیشه با توجه به خوانایی انتخاب کنید.", ".hero { color: #ffffff; background-color: #0f766e; }", "متن سفید روی پس‌زمینهٔ سبز خوانده می‌شود.", "رنگ فقط تزئین نیست و روی دسترس‌پذیری اثر دارد.", "رنگ‌های کم‌کنتراست را برای متن اصلی انتخاب نکنید."],
+    ["backgrounds", "پس‌زمینه‌ها", "پس‌زمینهٔ رنگی و تصویری را کنترل کنید.", "foundations", "visuals", "background-color و background-image سطح پشت محتوا را می‌سازند؛ با position و size جای تصویر را کنترل کنید.", ".banner { background: #d7f0ee; padding: 2rem; }", "یک نوار سبز کم‌رنگ با فاصلهٔ مناسب دیده می‌شود.", "پس‌زمینه نباید متن را از بین ببرد.", "تصویر بزرگ را بدون background-size رها نکنید."],
+    ["borders", "حاشیه‌ها", "خط دور عنصر و گوشه‌های آن را بسازید.", "foundations", "visuals", "border ضخامت، نوع و رنگ دارد و border-radius گوشه‌ها را نرم می‌کند.", ".card { border: 1px solid #dfe5ed; border-radius: .75rem; }", "کارت حاشیه‌ای ظریف و گوشه‌های گرد دارد.", "حاشیهٔ ظریف برای جداکردن بخش‌ها کافی است.", "border را با outline اشتباه نگیرید؛ border در اندازهٔ جعبه اثر می‌گذارد."],
+    ["margins", "فاصلهٔ بیرونی", "فاصلهٔ بین عنصر و همسایه‌اش را تنظیم کنید.", "foundations", "box-model", "margin فضای بیرون جعبه است و می‌تواند برای یک یا چند جهت مقدار بگیرد.", ".section { margin-block: 2rem; }", "بخش از بالا و پایین فاصله می‌گیرد.", "ویژگی‌های منطقی مثل margin-block در RTL و LTR بهتر کار می‌کنند.", "برای ایجاد فضای داخل عنصر از margin به جای padding استفاده نکنید."],
+    ["padding", "فاصلهٔ داخلی", "فضای بین محتوا و لبهٔ جعبه را تنظیم کنید.", "foundations", "box-model", "padding فضای درون جعبه است و پس‌زمینهٔ عنصر آن را می‌پوشاند.", ".button { padding: .6rem 1rem; }", "دکمهٔ قابل لمس‌تری با فضای داخلی مناسب ساخته می‌شود.", "padding برای افزایش سطح قابل کلیک هم مفید است.", "padding زیاد می‌تواند ارتفاع کارت را غیرضروری کند."],
+    ["height-width", "ارتفاع و عرض", "اندازهٔ عنصر را با محدودیت‌های ایمن کنترل کنید.", "foundations", "box-model", "width و height اندازهٔ پایه را تعیین می‌کنند؛ max-width و min-height برای جلوگیری از شکست محتوا کمک می‌کنند.", ".avatar { width: 4rem; height: 4rem; }", "جعبه‌ای با اندازهٔ چهار rem ساخته می‌شود.", "برای صفحه‌های مختلف، محدودیت‌ها از اندازهٔ ثابت بهترند.", "عرض ثابت بزرگ روی موبایل باعث اسکرول افقی می‌شود."],
+    ["box-model", "مدل جعبه", "content، padding، border و margin را کنار هم ببینید.", "foundations", "box-model", "هر عنصر CSS مانند جعبه‌ای از محتوا، فاصلهٔ داخلی، حاشیه و فاصلهٔ بیرونی است.", "* { box-sizing: border-box; }", "عرض اعلام‌شده شامل padding و border هم می‌شود.", "border-box محاسبهٔ اندازه‌ها را قابل پیش‌بینی می‌کند.", "فراموش‌کردن box-sizing در فرم‌ها اندازه‌ها را ناهماهنگ می‌کند."],
+    ["outline", "خط بیرونی", "outline را برای تأکید بدون تغییر اندازه به کار ببرید.", "foundations", "visuals", "outline بیرون border رسم می‌شود و فضای چیدمان مصرف نمی‌کند؛ برای focus قابل مشاهده مناسب است.", ":focus-visible { outline: 3px solid #fbbf24; }", "عنصر فوکوس‌شده با حلقه‌ای روشن مشخص می‌شود.", "هرگز focus را بدون جایگزین قابل مشاهده حذف نکنید.", "outline: none بدون ساخت focus جایگزین، دسترسی با صفحه‌کلید را خراب می‌کند."],
+    ["text", "متن", "تراز، فاصله و تزئین متن را تنظیم کنید.", "foundations", "visuals", "ویژگی‌های text-align، line-height، letter-spacing و text-decoration خوانایی را شکل می‌دهند.", "p { line-height: 1.8; text-align: start; }", "پاراگراف با فاصلهٔ خطوط راحت خوانده می‌شود.", "line-height مناسب از اندازهٔ فونت مهم‌تر از تزئینات زیاد است.", "برای ترازکردن متن از فاصله‌های دستی استفاده نکنید."],
+    ["fonts", "فونت‌ها", "خانواده، اندازه و وزن فونت را انتخاب کنید.", "foundations", "visuals", "font-family، font-size و font-weight ظاهر نوشتار را تعیین می‌کنند؛ fallback مناسب برای زمان نبودن فونت لازم است.", "body { font-family: Vazirmatn, sans-serif; }", "متن با فونت فارسی مناسب نمایش داده می‌شود.", "اندازهٔ متن را با واحدهای انعطاف‌پذیر انتخاب کنید.", "فونت تزئینی کم‌خوانا را برای متن طولانی به کار نبرید."],
+    ["icons", "آیکن‌ها", "آیکن را در رابط به شکل معنادار استفاده کنید.", "foundations", "visuals", "آیکن می‌تواند SVG یا فونت آیکن باشد؛ کنار آیکن صرفاً تصویری، نام یا برچسب دسترس‌پذیر قرار دهید.", ".icon { width: 1.25rem; height: 1.25rem; }", "آیکن در اندازه‌ای ثابت کنار متن قرار می‌گیرد.", "SVG کنترل رنگ و اندازهٔ خوبی دارد.", "آیکن بدون label را تنها راه انتقال معنی نکنید."],
+    ["links", "لینک‌ها", "حالت‌های مختلف لینک را خوانا طراحی کنید.", "foundations", "visuals", "رنگ، underline و حالت focus باید لینک را از متن عادی جدا کنند.", "a:hover { text-decoration: underline; }", "با رفتن نشانگر، لینک واضح‌تر می‌شود.", "underline برای خوانایی در متن پیوسته مفید است.", "فقط با تغییر رنگ، وضعیت لینک را مشخص نکنید."],
+    ["lists", "فهرست‌ها", "فهرست‌های مرتب و نامرتب را استایل بدهید.", "foundations", "visuals", "list-style و padding-inline-start ظاهر marker و فاصلهٔ فهرست را کنترل می‌کنند.", "ul { list-style: square; padding-inline-start: 1.5rem; }", "نشانگر مربع و تورفتگی منطقی دیده می‌شود.", "ساختار معنایی فهرست را با div تقلید نکنید.", "با حذف marker، نشانهٔ ساختاری را بدون جایگزین از بین نبرید."],
+    ["tables", "جدول‌ها", "جدول خوانا و قابل اسکن بسازید.", "foundations", "visuals", "border-collapse، padding و تراز متن برای جدول ضروری‌اند؛ سرستون را با th مشخص کنید.", "table { border-collapse: collapse; }\nth, td { padding: .6rem; }", "سلول‌ها بدون فاصلهٔ دوگانه و با فضای مناسب دیده می‌شوند.", "جدول برای دادهٔ جدولی است، نه چیدمان کل صفحه.", "رنگ تنها تفاوت ردیف‌ها نباشد."],
+    ["display", "نمایش عنصر", "display و اثر آن بر جریان صفحه را بشناسید.", "foundations", "layout", "block، inline و none رفتار متفاوتی در جریان دارند؛ inline اندازهٔ عمودی را مانند block نمی‌پذیرد.", ".badge { display: inline-block; padding: .25rem .5rem; }", "نشان در کنار متن می‌ماند و padding می‌گیرد.", "display را بر اساس رفتار موردنیاز انتخاب کنید.", "display:none محتوای تعاملی را از دسترس خارج می‌کند."],
+    ["position", "موقعیت‌دهی", "عنصر را نسبت به مرجع درست جابه‌جا کنید.", "foundations", "layout", "relative مرجع فرزند absolute می‌سازد و fixed یا sticky به viewport یا اسکرول وابسته‌اند.", ".tooltip { position: absolute; inset-block-start: 100%; }", "راهنما زیر عنصر مرجع قرار می‌گیرد.", "والد position: relative مرجع را روشن می‌کند.", "absolute را برای چیدمان اصلی صفحه استفاده نکنید."],
+    ["z-index", "ترتیب لایه‌ها", "هم‌پوشانی عنصرها را کنترل کنید.", "foundations", "layout", "z-index در یک stacking context ترتیب لایه‌ها را تعیین می‌کند و معمولاً همراه position معنا پیدا می‌کند.", ".menu { position: relative; z-index: 2; }", "منو روی محتوای اطراف قرار می‌گیرد.", "مقادیر کوچک و منظم بهتر از z-indexهای تصادفی‌اند.", "z-index بزرگ همیشه از stacking context والد عبور نمی‌کند."],
+    ["overflow", "سرریز محتوا", "محتوای بزرگ‌تر از جعبه را مدیریت کنید.", "foundations", "layout", "overflow: auto اسکرول لازم را فراهم می‌کند و hidden بخشی از محتوا را پنهان می‌سازد.", ".code { overflow-x: auto; }", "کد عریض بدون شکستن صفحه اسکرول می‌شود.", "برای محتوای قابل کپی، بریدن بی‌دلیل مناسب نیست.", "overflow:hidden را بدون بررسی focus و محتوا به کار نبرید."],
+    ["float", "شناورسازی", "کاربرد محدود float را درک کنید.", "intermediate", "layout", "float عنصر را به یک سمت می‌راند و متن را کنار آن جاری می‌کند؛ برای چیدمان مدرن معمولاً Flexbox یا Grid بهتر است.", ".thumb { float: inline-start; margin-inline-end: 1rem; }", "متن کنار تصویر شناور جاری می‌شود.", "پس از float باید اثر جریان را مدیریت کنید.", "floatهای قدیمی را با چیدمان پیچیده و بدون clear ترکیب نکنید."],
+    ["inline-block", "نمایش inline-block", "چند عنصر کنارهم با اندازهٔ قابل کنترل بسازید.", "basic", "layout", "inline-block اجازهٔ قرارگرفتن در خط و پذیرش width و height را هم‌زمان می‌دهد.", ".tag { display: inline-block; margin: .25rem; }", "برچسب‌ها کنار هم و با فاصله دیده می‌شوند.", "برای فاصلهٔ دقیق چند عنصر، flex معمولاً انتخاب بهتری است.", "فاصلهٔ whitespace در HTML می‌تواند بین inline-blockها فاصله ایجاد کند."],
+    ["align", "تراز کردن", "عنصرها را با روش‌های قابل اتکا تراز کنید.", "basic", "layout", "برای تراز افقی و عمودی، ابتدا مدل layout را انتخاب کنید؛ در Flexbox، align-items و justify-content ابزارهای اصلی‌اند.", ".row { display: flex; align-items: center; }", "محتوا در محور عمودی ردیف هم‌تراز می‌شود.", "تراز منطقی را با direction و writing mode هماهنگ کنید.", "با marginهای تصادفی تراز عمودی را شبیه‌سازی نکنید."],
+    ["combinators", "ترکیب‌گرها", "رابطهٔ والد، فرزند و همسایه را انتخاب کنید.", "intermediate", "selectors", "ترکیب‌گرهای descendant، child، adjacent و sibling دامنهٔ قانون را دقیق‌تر می‌کنند.", ".card > p { margin-block-start: 0; }", "فقط پاراگراف مستقیم کارت تغییر می‌کند.", "انتخاب‌گر دقیق از کلاس‌های اضافی کم می‌کند.", "انتخاب‌گرهای بیش‌ازحد عمیق شکننده‌اند."],
+    ["pseudo-classes", "شبه‌کلاس‌ها", "به وضعیت عنصرها مانند hover و focus پاسخ دهید.", "intermediate", "selectors", "شبه‌کلاس وضعیت یا موقعیت عنصر را هدف می‌گیرد و بدون افزودن class دستی تعامل ظاهری می‌سازد.", "button:hover { background: #d7f0ee; }", "پس‌زمینهٔ دکمه هنگام hover تغییر می‌کند.", "focus-visible برای صفحه‌کلید اهمیت ویژه دارد.", "hover را تنها روش فهم وضعیت کنترل نکنید."],
+    ["pseudo-elements", "شبه‌عنصرها", "بخش مجازی قبل و بعد محتوا را استایل دهید.", "intermediate", "selectors", "::before و ::after برای تزئین یا نشانگر مناسب‌اند؛ محتوای ضروری را در آن‌ها پنهان نکنید.", ".required::after { content: \" *\"; color: #b91c1c; }", "ستارهٔ کنار برچسب ظاهر می‌شود.", "content برای ::before و ::after لازم است.", "متن مهم فرم را فقط در content قرار ندهید."],
+    ["opacity", "شفافیت", "شفافیت را بدون آسیب به خوانایی کنترل کنید.", "basic", "components", "opacity کل عنصر و فرزندانش را شفاف می‌کند؛ برای رنگ پس‌زمینهٔ جداگانه از rgba یا رنگ مدرن استفاده کنید.", ".muted { opacity: .72; }", "عنصر کم‌رنگ‌تر اما همچنان قابل مشاهده است.", "متن کم‌رنگ باید حداقل کنتراست لازم را حفظ کند.", "opacity صفر عنصر را نامرئی می‌کند اما لزوماً از layout حذف نمی‌کند."],
+    ["navigation-bars", "نوارهای ناوبری", "یک ناوبری ساده و قابل استفاده بسازید.", "basic", "components", "ناوبری مجموعه‌ای از لینک‌هاست؛ با flex، gap و حالت active آن را خوانا و قابل تشخیص کنید.", ".nav { display: flex; gap: 1rem; }", "لینک‌ها در یک ردیف با فاصله قرار می‌گیرند.", "active و focus باید واضح باشند.", "ناوبری افقی را بدون فکر برای صفحهٔ باریک ثابت نکنید."],
+    ["dropdowns", "منوهای بازشونده", "ساختار ظاهری dropdown را با position درک کنید.", "intermediate", "components", "منوی بازشونده معمولاً والد relative و فهرست absolute دارد؛ رفتار بازشدن واقعی به HTML و JavaScript دسترس‌پذیر نیاز دارد.", ".dropdown-menu { position: absolute; inset-block-start: 100%; }", "فهرست زیر کنترل قرار می‌گیرد.", "کنترل باز و بسته‌شدن باید با صفحه‌کلید هم کار کند.", "dropdown صرفاً با hover روی موبایل قابل اتکا نیست."],
+    ["images", "تصویرها", "تصویر را واکنش‌گرا و متناسب نمایش دهید.", "basic", "components", "max-width:100% از بیرون‌زدن تصویر جلوگیری می‌کند و object-fit نحوهٔ پرکردن قاب را مشخص می‌سازد.", "img { max-width: 100%; height: auto; }", "تصویر در عرض والد جا می‌شود و نسبتش حفظ می‌گردد.", "alt در HTML برای معنی و دسترس‌پذیری است، نه CSS.", "کشیدن تصویر با width و height ناسازگار کیفیت را کم می‌کند."],
+    ["forms", "فرم‌ها", "کنترل‌های فرم را منظم و قابل خواندن استایل دهید.", "basic", "components", "فرم خوب label، فاصلهٔ یکنواخت، focus واضح و اندازهٔ مناسب کنترل‌ها دارد.", ".field { display: grid; gap: .4rem; }", "برچسب و ورودی با فاصلهٔ منظم زیر هم قرار می‌گیرند.", "حالت خطا را فقط با رنگ نشان ندهید.", "outline ورودی را بدون focus جایگزین حذف نکنید."],
+    ["variables", "متغیرهای CSS", "مقادیر مشترک را با custom property مدیریت کنید.", "intermediate", "components", "متغیرها با -- تعریف و با var() مصرف می‌شوند و تغییر تم یا برند را سریع می‌کنند.", ":root { --brand: #0f766e; }\n.button { background: var(--brand); }", "دکمه رنگ متغیر برند را می‌گیرد.", "نام متغیر باید نقش آن را توضیح دهد، نه مقدارش را.", "برای متغیر بدون fallback، مقدار پیش‌فرض در نظر بگیرید."],
+    ["flexbox", "Flexbox", "چیدمان یک‌بعدی را با Flexbox بسازید.", "intermediate", "layout", "Flexbox برای ردیف یا ستون و توزیع فضای محور اصلی و متقاطع ساخته شده است.", ".toolbar { display: flex; justify-content: space-between; gap: 1rem; }", "دو بخش نوار ابزار از هم فاصله می‌گیرند.", "gap از marginهای زنجیره‌ای قابل پیش‌بینی‌تر است.", "محور اصلی را بدون توجه به flex-direction اشتباه نگیرید."],
+    ["grid", "CSS Grid", "چیدمان دوبعدی کارت‌ها را کنترل کنید.", "intermediate", "layout", "Grid ردیف و ستون را هم‌زمان مدیریت می‌کند و برای ساخت شبکه‌های منظم مناسب است.", ".cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }", "سه ستون هم‌اندازه با فاصله ساخته می‌شود.", "minmax و auto-fit برای عرض‌های انعطاف‌پذیر مفیدند.", "سه ستون ثابت را بدون breakpoint روی موبایل رها نکنید."],
+    ["responsive-design", "طراحی واکنش‌گرا", "صفحه‌ای سازگار با اندازه‌های گوناگون بسازید.", "intermediate", "responsive", "واکنش‌گرایی یعنی محتوا در فضای موجود خوانا و قابل استفاده بماند؛ از رویکرد mobile-first شروع کنید.", ".container { width: min(100% - 2rem, 70rem); margin-inline: auto; }", "محتوا در موبایل حاشیه دارد و در نمایشگر بزرگ محدود می‌شود.", "محتوا باید تصمیم‌گیرندهٔ breakpoint باشد.", "طراحی را فقط برای یک عرض مشخص آزمایش نکنید."],
+    ["media-queries", "Media Queries", "قواعد را بر اساس ویژگی viewport تغییر دهید.", "intermediate", "responsive", "@media برای شرط‌هایی مانند min-width استفاده می‌شود و باید فقط تغییر لازم را در breakpoint تعریف کند.", "@media (min-width: 48rem) { .nav { display: flex; } }", "از عرض مشخصی به بعد ناوبری ردیفی می‌شود.", "breakpoint را بر اساس شکست محتوا انتخاب کنید.", "تعداد زیاد breakpoint نگهداری را دشوار می‌کند."],
+    ["transitions", "گذارها", "تغییر حالت‌ها را نرم و کنترل‌شده کنید.", "intermediate", "motion", "transition زمان و روش تغییر property را تعیین می‌کند و برای hover یا focus مناسب است.", ".link { transition: color 150ms ease; }", "تغییر رنگ لینک نرم‌تر دیده می‌شود.", "فقط propertyهای لازم را transition دهید.", "transition طولانی حس کندی ایجاد می‌کند."],
+    ["transforms", "تبدیل‌ها", "عنصر را بدون تغییر جریان جابه‌جا یا بچرخانید.", "intermediate", "motion", "transformهایی مانند translate و scale ظاهر عنصر را تغییر می‌دهند و معمولاً layout همسایه‌ها را جابه‌جا نمی‌کنند.", ".card:hover { transform: translateY(-2px); }", "کارت کمی به بالا می‌رود.", "transform را با transition ترکیب کنید.", "scale زیاد باعث هم‌پوشانی و مشکل خوانایی می‌شود."],
+    ["animations", "انیمیشن‌ها", "حرکت چندمرحله‌ای را با keyframes تعریف کنید.", "intermediate", "motion", "@keyframes وضعیت‌های میانی را تعریف می‌کند و animation آن را به عنصر متصل می‌سازد.", "@keyframes pulse { from { opacity: .5; } to { opacity: 1; } }", "شفافیت عنصر به‌آرامی تغییر می‌کند.", "حرکت باید هدف رابط داشته باشد و کوتاه باشد.", "برای کاربرانی که reduced motion خواسته‌اند حرکت شدید نسازید."],
+    ["filters", "فیلترها", "افکت‌های تصویری را با احتیاط اعمال کنید.", "intermediate", "motion", "filter مانند grayscale و brightness ظاهر تصویر را تغییر می‌دهد و روی عملکرد و خوانایی اثر دارد.", ".photo { filter: grayscale(1); }", "تصویر به خاکستری تبدیل می‌شود.", "افکت را برای معنی ضروری تصویر به کار نبرید.", "فیلترهای زنجیره‌ای سنگین می‌توانند تجربه را کند کنند."],
+    ["best-practices", "بهترین روش‌های CSS", "کد CSS قابل نگهداری و قابل دسترس بنویسید.", "intermediate", "motion", "نام‌گذاری روشن، ترتیب لایه‌ها، متغیرها، ویژگی‌های منطقی و توجه به focus پایه‌های CSS حرفه‌ای‌اند.", ":root { --space: 1rem; }\n.stack { display: grid; gap: var(--space); }", "فاصلهٔ اجزای stack از یک منبع مشترک می‌آید.", "CSS را در اندازه‌های واقعی و با صفحه‌کلید بررسی کنید.", "راه‌حل سریع با specificity زیاد، بدهی فنی ایجاد می‌کند."]
+  ];
+
+  const cssLessons = cssTopicData.map((item, index) => {
+    const [slug, title, description, difficulty, section, explanation, syntax, result, note, mistake] = item;
+    const code = `<style>body{font-family:Arial,sans-serif;padding:1.5rem;color:#172033} .demo{${syntax.replace(/^[^{]+\{?/, "").replace(/\}.*$/, "")}}</style><h1 class="demo">${escapeHtml(title)}</h1><p>نتیجهٔ قابل مشاهدهٔ این تمرین</p>`;
+    return {
+      id: `css-${slug}`, slug: `css-${slug}`, section, number: index + 1, title,
+      description, difficulty, timeMinutes: index < 12 ? 8 : 10,
+      objectives: [`مفهوم «${title}» را با زبان ساده توضیح دهید.`, `یک قانون ${title} را در پروژهٔ کوچک خود به کار ببرید.`, "اثر تغییرات CSS را در پیش‌نمایش بررسی کنید."],
+      content: [
+        { type: "h2", text: `${title} چه کمکی می‌کند؟` }, { type: "p", text: explanation },
+        { type: "syntax", title: `سینتکس ${title}`, code: syntax },
+        { type: "example", title: `نمونهٔ عملی ${title}`, code, desc: result },
+        { type: "note", text: note }, { type: "mistake", text: mistake }
+      ],
+      exercise: { title: `تمرین: ${title}`, prompt: `یک نمونهٔ کوچک بسازید که کاربرد «${title}» را نشان دهد و نتیجهٔ بصری آن را بررسی کنید.`, starterCode: `<div class="demo">نمونهٔ ${title}</div>\n\n<style>\n.demo {\n  /* قانون ${title} را اینجا بنویسید */\n}\n</style>` }
+    };
+  });
+
+  /* ---------------------------------------------------------------
      Registry (Phase 03 will add the CSS course here)
      --------------------------------------------------------------- */
   const courses = {
+    css: {
+      id: "css", title: "دورهٔ آموزش CSS", shortTitle: "آموزش CSS", badge: "CSS",
+      icon: '<path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h5M8 16h3"/>',
+      description: "مسیر مرحله‌به‌مرحلهٔ یادگیری CSS از نخستین قانون تا چیدمان واکنش‌گرا و کدنویسی قابل نگهداری.",
+      whatYouWillLearn: ["ساخت ظاهر خوانا و دسترس‌پذیر", "مدل جعبه، متن و رنگ", "Flexbox، Grid و طراحی واکنش‌گرا", "تعامل ظاهری و بهترین روش‌های CSS"],
+      difficulty: "basic", levelLabel: "از مقدماتی تا متوسط", lessonCount: cssLessons.length, sections: cssSections, lessons: cssLessons,
+      estimatedMinutes: cssLessons.reduce((sum, lesson) => sum + (lesson.timeMinutes || 0), 0),
+    },
     html: {
       id: "html",
       title: "دورهٔ آموزش HTML",
@@ -1506,6 +1592,7 @@
       levelLabel: "از مقدماتی تا متوسط",
       lessonCount: htmlLessons.length,
       sections: htmlSections,
+    cssSections,
       lessons: htmlLessons,
       estimatedMinutes: htmlLessons.reduce((sum, lesson) => sum + (lesson.timeMinutes || 0), 0),
     },
@@ -1535,7 +1622,10 @@
     };
   };
 
-  const lessonUrl = (slug) => `4-lesson.html?lesson=${encodeURIComponent(slug)}`;
+  const lessonUrl = (slug, courseId = "html") => {
+    const query = `lesson=${encodeURIComponent(slug)}`;
+    return courseId === "html" ? `4-lesson.html?${query}` : `4-lesson.html?${query}&course=${encodeURIComponent(courseId)}`;
+  };
 
   /* ---------------------------------------------------------------
      Render helpers
@@ -1669,7 +1759,7 @@
       overview.innerHTML = `
         <div class="lesson-badges">
           <span class="badge badge-primary">${escapeHtml(course.badge)}</span>
-          <span class="badge badge-info">${escapeHtml(course.difficulty)}</span>
+          <span class="badge badge-info">${difficultyLabel(course.difficulty)}</span>
           <span class="badge badge-warning">${stats.lessons} درس</span>
         </div>
         <div class="course-intro">
@@ -1705,7 +1795,7 @@
           const lessonCards = sectionLessons
             .map((lesson) => {
               const badges = `<span class="badge badge-primary">درس ${lesson.number}</span><span class="badge badge-info">${difficultyLabel(lesson.difficulty)}</span>`;
-              return `<a class="card card-hover course-lesson-card" href="${lessonUrl(lesson.slug)}">
+              return `<a class="card card-hover course-lesson-card" href="${lessonUrl(lesson.slug, courseId)}">
                 <div class="card-body">
                   <div class="lesson-badges">${badges}</div>
                   <h3 class="card-title">${escapeHtml(lesson.title)}</h3>
@@ -1750,7 +1840,7 @@
         const items = sectionLessons
           .map((lesson) => {
             const active = lesson.id === currentLessonId;
-            return `<a class="lesson-nav-link ${active ? "is-active" : ""}" href="${lessonUrl(lesson.slug)}" data-lesson-id="${escapeAttr(lesson.id)}" ${active ? 'aria-current="page"' : ""}>
+            return `<a class="lesson-nav-link ${active ? "is-active" : ""}" href="${lessonUrl(lesson.slug, courseId)}" data-lesson-id="${escapeAttr(lesson.id)}" ${active ? 'aria-current="page"' : ""}>
               <span class="lesson-dot" aria-hidden="true"></span>
               <span>${escapeHtml(lesson.title)}</span>
               <span class="lesson-num">${lesson.number}</span>
@@ -1769,11 +1859,12 @@
      Lesson page
      --------------------------------------------------------------- */
   const renderLessonPage = (shell) => {
-    const courseId = shell.getAttribute("data-course");
+    const shellCourseId = shell.getAttribute("data-course");
+    const params = new URLSearchParams(window.location.search);
+    const requestedCourseId = params.get("course") || shellCourseId || "html";
+    const courseId = getCourse(requestedCourseId) ? requestedCourseId : shellCourseId;
     if (!courseId) return;
     const course = getCourse(courseId);
-
-    const params = new URLSearchParams(window.location.search);
     const slug = params.get("lesson") || (course ? getCourseLessons(courseId)[0].slug : "");
     const lesson = getLesson(courseId, slug);
     const content = qs("[data-lesson-content]", shell);
@@ -1793,6 +1884,8 @@
 
     const breadcrumbCurrent = qs("[data-breadcrumb-current]");
     if (breadcrumbCurrent) breadcrumbCurrent.textContent = lesson.title;
+    const breadcrumbCourse = qs("[data-breadcrumb-course]");
+    if (breadcrumbCourse) { breadcrumbCourse.textContent = course.shortTitle; breadcrumbCourse.href = courseId === "css" ? "3-css-course.html" : "2-html-course.html"; }
 
     document.title = `${lesson.title} | ${course.title}`;
     document.body.setAttribute("data-page", "lesson");
@@ -1807,8 +1900,8 @@
     if (!content) return;
 
     const { prev, next } = getPrevNext(courseId, lesson.id);
-    const prevLink = prev ? `<a class="lesson-nav-item prev" href="${lessonUrl(prev.slug)}"><span class="nav-label">درس قبلی</span><span class="nav-title">${escapeHtml(prev.title)}</span></a>` : "<div></div>";
-    const nextLink = next ? `<a class="lesson-nav-item next" href="${lessonUrl(next.slug)}"><span class="nav-label">درس بعدی</span><span class="nav-title">${escapeHtml(next.title)}</span></a>` : "<div></div>";
+    const prevLink = prev ? `<a class="lesson-nav-item prev" href="${lessonUrl(prev.slug, courseId)}"><span class="nav-label">درس قبلی</span><span class="nav-title">${escapeHtml(prev.title)}</span></a>` : "<div></div>";
+    const nextLink = next ? `<a class="lesson-nav-item next" href="${lessonUrl(next.slug, courseId)}"><span class="nav-label">درس بعدی</span><span class="nav-title">${escapeHtml(next.title)}</span></a>` : "<div></div>";
 
     content.innerHTML = `
       <header class="lesson-heading">
@@ -1900,8 +1993,11 @@
   window.plpLessons = {
     courses,
     htmlCourse: courses.html,
+    cssCourse: courses.css,
     htmlLessons,
+    cssLessons,
     sections: htmlSections,
+    cssSections,
     getCourse,
     getCourseLessons,
     getLesson,
