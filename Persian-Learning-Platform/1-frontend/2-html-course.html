@@ -90,17 +90,18 @@
         <div class="page-head">
           <div class="lesson-badges">
             <span class="badge badge-primary">HTML</span>
-            <span class="badge badge-warning">فاز ۰۱ — فونداسیون</span>
+            <span class="badge badge-warning">دورهٔ کامل</span>
           </div>
           <h1 class="page-title">دورهٔ آموزش HTML</h1>
           <p class="page-desc">
-            در این دورهٔ فارسی با ساختار پایه، متن، لینک، تصویر، جدول و فرم آشنا
-            می‌شوید. محتوای واقعی درس‌ها در فازهای آینده به این رابط اضافه می‌شود.
+            در این دورهٔ فارسی با ساختار پایه، متن، لینک، تصویر، جدول، فرم،
+            سمنتیک و دسترس‌پذیری آشنا می‌شوید. درس‌ها به ترتیب، از صفر و با
+            مثال‌های عملی پیش می‌روند.
           </p>
         </div>
         <div class="card">
           <div class="card-body">
-            <div class="progress-label"><span>پیشرفت دوره (نمایشی)</span><strong>۰٪</strong></div>
+            <div class="progress-label"><span>پیشرفت دوره (در فاز پیشرفت وصل می‌شود)</span><strong>۰٪</strong></div>
             <div class="progress" role="progressbar" aria-label="پیشرفت دورهٔ HTML" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
               <div class="progress-bar" style="width: 0%"></div>
             </div>
@@ -109,46 +110,23 @@
       </div>
     </section>
 
-    <section class="container section" aria-labelledby="html-lessons-heading">
-      <div class="section-head">
-        <h2 id="html-lessons-heading" class="section-title">درس‌های HTML</h2>
-        <p class="section-subtitle">فهرست نمونهٔ درس‌ها؛ هرکارت به صفحهٔ درس متصل است.</p>
-      </div>
-      <div class="course-grid">
-        <a class="card card-hover" href="4-lesson.html">
-          <div class="card-body">
-            <div class="lesson-badges"><span class="badge badge-primary">درس ۱</span><span class="badge badge-success">مقدماتی</span></div>
-            <h3 class="card-title">آشنایی با HTML</h3>
-            <p class="card-text">ساختار یک سند HTML، تگ‌ها و اولین صفحهٔ وب.</p>
-          </div>
-          <div class="card-footer"><span class="btn btn-outline btn-sm">شروع درس</span></div>
-        </a>
-        <a class="card card-hover" href="4-lesson.html">
-          <div class="card-body">
-            <div class="lesson-badges"><span class="badge badge-primary">درس ۲</span><span class="badge badge-success">مقدماتی</span></div>
-            <h3 class="card-title">عنوان‌ها و متن</h3>
-            <p class="card-text">h1 تا h6، پاراگراف و متن‌های پررنگ و مورب.</p>
-          </div>
-          <div class="card-footer"><span class="btn btn-outline btn-sm">شروع درس</span></div>
-        </a>
-        <a class="card card-hover" href="4-lesson.html">
-          <div class="card-body">
-            <div class="lesson-badges"><span class="badge badge-primary">درس ۳</span><span class="badge badge-success">مقدماتی</span></div>
-            <h3 class="card-title">لینک‌ها</h3>
-            <p class="card-text">ایجاد لینک داخلی و خارجی با تگ a و مسیرهای نسبی.</p>
-          </div>
-          <div class="card-footer"><span class="btn btn-outline btn-sm">شروع درس</span></div>
-        </a>
-        <a class="card card-hover" href="4-lesson.html">
-          <div class="card-body">
-            <div class="lesson-badges"><span class="badge badge-primary">درس بعدی</span><span class="badge badge-info">به‌زودی</span></div>
-            <h3 class="card-title">تصویرها و رسانه</h3>
-            <p class="card-text">تصویر، صدا و ویدیو در HTML.</p>
-          </div>
-          <div class="card-footer"><span class="btn btn-secondary btn-sm" aria-disabled="true">به‌زودی</span></div>
-        </a>
-      </div>
-    </section>
+    <div class="container" data-course-shell data-course="html">
+      <section class="section" aria-labelledby="html-overview-heading">
+        <div class="section-head">
+          <h2 id="html-overview-heading" class="section-title">معرفی دوره</h2>
+          <p class="section-subtitle">چه چیزی در این دوره یاد می‌گیرید و چقدر زمان می‌برد؟</p>
+        </div>
+        <div data-course-overview></div>
+      </section>
+
+      <section class="section" aria-labelledby="html-lessons-heading">
+        <div class="section-head">
+          <h2 id="html-lessons-heading" class="section-title">فهرست درس‌ها</h2>
+          <p class="section-subtitle">درس‌ها به صورت بخش‌بندی‌شده و منطقی مرتب شده‌اند.</p>
+        </div>
+        <div data-course-lessons></div>
+      </section>
+    </div>
 
     <section class="container section" aria-labelledby="html-ui-heading">
       <div class="section-head">
@@ -192,7 +170,7 @@
         </div>
       </div>
       <div class="inline-actions mt-6">
-        <a class="btn btn-primary" href="4-lesson.html">مشاهدهٔ صفحهٔ درس</a>
+        <a class="btn btn-primary" href="4-lesson.html?lesson=html-introduction">شروع اولین درس</a>
         <a class="btn btn-outline" href="3-css-course.html">دورهٔ CSS</a>
       </div>
     </section>
@@ -256,6 +234,7 @@
 
   <script src="2-js/7-theme.js"></script>
   <script src="2-js/1-app.js"></script>
+  <script src="2-js/3-lessons.js"></script>
   <script src="2-js/4-playground.js"></script>
 </body>
 </html>

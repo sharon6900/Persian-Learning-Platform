@@ -79,7 +79,7 @@
   </header>
 
   <main id="main-content" class="site-main">
-    <div class="container lesson-shell">
+    <div class="container lesson-shell" data-lesson-shell data-course="html">
       <div class="lesson-overlay" data-lesson-overlay hidden></div>
       <aside id="lesson-sidebar" class="lesson-sidebar" data-lesson-sidebar role="dialog" aria-modal="true" aria-hidden="true" inert aria-label="فهرست درس‌های دوره">
         <div class="lesson-sidebar-head">
@@ -88,11 +88,11 @@
           </button>
           <h2 class="lesson-sidebar-title">فهرست درس‌ها</h2>
         </div>
-        <p class="lesson-course">
+        <p class="lesson-course" data-lesson-course-title>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
           دورهٔ HTML
         </p>
-        <div class="lesson-nav-list" data-lesson-nav-list data-course-id="html" data-lesson-id="html-intro">
+        <div class="lesson-nav-list" data-lesson-nav-list data-course-id="html">
           <div class="muted">در حال بارگذاری فهرست درس‌ها…</div>
         </div>
         <div class="lesson-sidebar-footer">
@@ -110,127 +110,13 @@
           <ol class="breadcrumbs">
             <li><a href="1-index.html">خانه</a></li>
             <li><a href="2-html-course.html">دورهٔ HTML</a></li>
-            <li aria-current="page">آشنایی با HTML</li>
+            <li aria-current="page" data-breadcrumb-current>در حال بارگذاری…</li>
           </ol>
         </nav>
 
-        <header class="lesson-heading">
-          <div class="lesson-badges">
-            <span class="badge badge-primary">HTML</span>
-            <span class="badge badge-primary">درس ۱</span>
-            <span class="badge badge-warning">فاز ۰۱ — فونداسیون</span>
-          </div>
-          <h1 id="lesson-title" class="lesson-title">آشنایی با HTML</h1>
-          <p class="lesson-subtitle">
-            در همین درس با مفهوم HTML، ساختار پایهٔ یک سند وب و اولین تگ‌ها
-            آشنا می‌شوید. محتوای واقعی درس در فاز بعدی آموزشی اضافه می‌شود.
-          </p>
-          <div class="lesson-progress">
-            <div class="progress-label"><span>پیشرفت این درس (نمایشی)</span><strong>۰٪</strong></div>
-            <div class="progress" role="progressbar" aria-label="پیشرفت درس" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="progress-bar" style="width: 0%"></div>
-            </div>
-          </div>
-        </header>
-
-        <section class="objectives" aria-labelledby="objectives-title">
-          <h2 id="objectives-title" class="objectives-title">اهداف یادگیری</h2>
-          <ul class="objectives-list">
-            <li class="objective">معنای HTML و نقش آن در صفحهٔ وب را بشناسید.</li>
-            <li class="objective">ساختار پایهٔ یک سند HTML را تشخیص دهید.</li>
-            <li class="objective">اولین عنوان و پاراگراف را در صفحه بنویسید.</li>
-          </ul>
-        </section>
-
-        <div class="prose">
-          <h2>سرفصل‌های این درس</h2>
-          <p>
-            این بخش برای نگه‌داشتن ساختار صفحهٔ درس طراحی شده است. متن‌های
-            آموزشی واقعی در فازهای محتوایی اضافه خواهند شد.
-          </p>
-          <h3>تگ‌های HTML</h3>
-          <p>
-            در این بخش توضیح داده می‌شود که هر تگ چه نقشی دارد و چطور
-            ساختار یک سند را تشکیل می‌دهد.
-          </p>
+        <div data-lesson-content>
+          <div class="loading"><span class="spinner" aria-hidden="true"></span><span>در حال بارگذاری درس…</span></div>
         </div>
-
-        <div class="code-example">
-          <div class="code-example-head">
-            <div class="code-example-title">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-              <span>مثال: اولین صفحه</span>
-            </div>
-            <div class="code-example-actions">
-              <button class="code-tool" type="button" data-copy-target="#lesson-code" data-copy-text="<h1>سلام دنیا</h1>" aria-label="کپی کد">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                <span data-copy-label>کپی</span>
-              </button>
-              <button class="code-tool" type="button" data-run="#lesson-preview" aria-label="اجرای نمونه">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
-                <span>اجرا</span>
-              </button>
-            </div>
-          </div>
-          <div class="code-example-body">
-            <div class="code-editor">
-              <div class="code-editor__inner">
-                <pre><code id="lesson-code">&lt;h1&gt;سلام دنیا&lt;/h1&gt;
-&lt;p&gt;این اولین پاراگراف من در وب‌آموز است.&lt;/p&gt;</code></pre>
-              </div>
-            </div>
-            <div class="code-preview">
-              <div class="code-preview-bar">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="15" rx="2"/><path d="M8 2h8"/></svg>
-                <span>پیش‌نمایش</span>
-              </div>
-              <iframe class="code-preview-frame" id="lesson-preview" title="پیش‌نمایش کد درس" tabindex="0" srcdoc="&lt;h1 style='color:#0f766e'&gt;سلام دنیا&lt;/h1&gt;&lt;p style='font-size:15px'&gt;این یک پیش‌نمایش نمونهٔ کد است.&lt;/p&gt;"></iframe>
-            </div>
-          </div>
-          <div class="code-example-foot">
-            <p>اجرای زنده در فاز ۰۴ فعال می‌شود؛ فعلاً دکمهٔ اجرا به پیش‌نمایش فوکوس می‌کند.</p>
-          </div>
-        </div>
-
-        <section class="lesson-exercise" aria-labelledby="exercise-title">
-          <div class="exercise-header">
-            <h2 id="exercise-title" class="exercise-title">تمرین</h2>
-          </div>
-          <div class="exercise-body">
-            <p class="exercise-text">
-              اولین صفحهٔ خود را با یک عنوان و یک پاراگراف بسازید. تمرین‌های
-              تعاملی واقعی در فازهای آینده به این بخش متصل می‌شوند.
-            </p>
-            <div class="code-example playground-placeholder">
-              <div class="playground-frame">
-                <span class="state-text">محیط تمرین تعاملی در فاز ۰۴ اضافه می‌شود.</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div class="completion-panel">
-          <div>
-            <p class="completion-text">این درس را یاد گرفتید؟</p>
-            <p class="completion-hint">ثبت واقعی پیشرفت در فاز پیشرفت انجام می‌شود.</p>
-          </div>
-          <button class="btn btn-primary" type="button" data-lesson-complete>تکمیل درس</button>
-        </div>
-        <p class="alert alert-info" data-completion-info hidden role="status">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-          خوب! ذخیرهٔ واقعی پیشرفت شما بعد از فعال‌شدن حساب کاربری پر می‌شود.
-        </p>
-
-        <nav class="lesson-nav" aria-label="ناوبری بین درس‌ها">
-          <a class="lesson-nav-item prev" href="4-lesson.html">
-            <span class="nav-label">درس قبلی</span>
-            <span class="nav-title">شروع دوره</span>
-          </a>
-          <a class="lesson-nav-item next" href="4-lesson.html">
-            <span class="nav-label">درس بعدی</span>
-            <span class="nav-title">عنوان‌ها و متن</span>
-          </a>
-        </nav>
       </section>
     </div>
   </main>

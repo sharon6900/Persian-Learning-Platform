@@ -294,51 +294,63 @@
 
   /* -------------------------------------------------------------
      Copy to clipboard
+     Event delegation is used so dynamically-rendered content
+     (lesson pages created from the lesson data module) also works.
      ------------------------------------------------------------- */
+  let copyDelegationBound = false;
   const initCopyButtons = () => {
-    qsa("[data-copy-target]").forEach((button) => {
-      button.addEventListener("click", async () => {
-        const target = qs(button.getAttribute("data-copy-target"));
-        if (!target) return;
+    if (copyDelegationBound) return;
+    copyDelegationBound = true;
 
-        const text =
-          target.getAttribute("data-copy-text") === null
-            ? target.innerText
-            : target.getAttribute("data-copy-text");
+    document.addEventListener("click", async (event) => {
+      const button = event.target.closest("[data-copy-target]");
+      if (!button) return;
 
-        try {
-          await navigator.clipboard.writeText(text);
-        } catch (error) {
-          const range = document.createRange();
-          range.selectNodeContents(target);
-          const selection = window.getSelection();
-          selection.removeAllRanges();
-          selection.addRange(range);
-          document.execCommand("copy");
-          selection.removeAllRanges();
-        }
+      const target = qs(button.getAttribute("data-copy-target"));
+      if (!target) return;
 
-        const original = button.querySelector("[data-copy-label]");
-        if (original) {
-          const previous = original.textContent;
-          original.textContent = "کپی شد ✓";
-          await wait(1500);
-          original.textContent = previous;
-        }
-      });
+      const text =
+        target.getAttribute("data-copy-text") === null
+          ? target.innerText
+          : target.getAttribute("data-copy-text");
+
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (error) {
+        const range = document.createRange();
+        range.selectNodeContents(target);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand("copy");
+        selection.removeAllRanges();
+      }
+
+      const original = button.querySelector("[data-copy-label]");
+      if (original) {
+        const previous = original.textContent;
+        original.textContent = "کپی شد ✓";
+        await wait(1500);
+        original.textContent = previous;
+      }
     });
   };
 
   /* -------------------------------------------------------------
      Run buttons: placeholder behavior
      The interactive playground is implemented in Phase 04.
+     Event delegation keeps dynamically-rendered lesson examples working.
      ------------------------------------------------------------- */
+  let runDelegationBound = false;
   const initRunButtons = () => {
-    qsa("[data-run]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const frame = qs(button.getAttribute("data-run"));
-        if (frame) frame.focus();
-      });
+    if (runDelegationBound) return;
+    runDelegationBound = true;
+
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-run]");
+      if (!button) return;
+      const frame = qs(button.getAttribute("data-run"));
+      if (frame) frame.focus();
     });
   };
 

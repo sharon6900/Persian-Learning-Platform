@@ -420,3 +420,175 @@
     display: none;
   }
 }
+
+/* ---------------------------------------------------------------
+   Course page
+   --------------------------------------------------------------- */
+.course-intro {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin-block-end: var(--space-5);
+}
+
+.course-intro-title {
+  font-size: var(--font-size-md);
+  margin-block-end: var(--space-2);
+}
+
+.course-intro-text {
+  color: var(--color-muted);
+}
+
+.course-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-block-end: var(--space-5);
+}
+
+.course-meta-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.course-meta-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+}
+
+.course-meta-card strong {
+  color: var(--color-heading);
+  font-size: var(--font-size-md);
+}
+
+.course-objectives {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+}
+
+.course-objectives-title {
+  font-size: var(--font-size-md);
+  margin-block-end: var(--space-3);
+}
+
+.course-section {
+  margin-block-end: var(--space-6);
+}
+
+.course-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-block-end: var(--space-4);
+}
+
+.course-section-title {
+  font-size: var(--font-size-lg);
+}
+
+.course-lesson-card .card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.card-lesson-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+}
+
+.card-lesson-meta svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ---------------------------------------------------------------
+   Lesson sidebar sections
+   --------------------------------------------------------------- */
+.lesson-section + .lesson-section {
+  margin-block-start: var(--space-4);
+}
+
+.lesson-section-title {
+  font-size: var(--font-size-sm);
+  font-weight: 800;
+  color: var(--color-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: var(--space-1) var(--space-3);
+  margin-block-end: var(--space-2);
+}
+
+/* ---------------------------------------------------------------
+   Syntax blocks
+   --------------------------------------------------------------- */
+.syntax-block {
+  margin-block-end: var(--space-4);
+}
+
+.syntax-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-muted);
+  margin-block-end: var(--space-2);
+}
+
+.syntax-block pre {
+  background: var(--color-code-bg);
+  color: var(--color-code-text);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.syntax-block code {
+  font-family: var(--font-mono);
+  color: var(--color-code-text);
+}
+
+/* ---------------------------------------------------------------
+   Exercise starter code
+   --------------------------------------------------------------- */
+.exercise-starter {
+  direction: ltr;
+  text-align: left;
+  max-width: 100%;
+  overflow-x: auto;
+  background: var(--color-code-bg);
+  color: var(--color-code-text);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 40rem) {
+  .course-meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .course-lesson-card .card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
