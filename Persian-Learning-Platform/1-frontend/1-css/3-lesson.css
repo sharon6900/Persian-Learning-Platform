@@ -488,7 +488,10 @@
   margin-block-end: var(--space-3);
 }
 
-.course-objectives + .course-section {
+/* The objectives card is nested inside [data-course-overview], while the
+   generated section list is its next sibling. Put the gap on that outer
+   list container so it sits between the two blocks, not inside the header. */
+[data-course-overview] + [data-course-lessons] {
   margin-block-start: var(--space-6);
 }
 
