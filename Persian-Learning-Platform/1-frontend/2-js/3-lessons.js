@@ -1547,7 +1547,7 @@
 
   const cssLessons = cssTopicData.map((item, index) => {
     const [slug, title, description, difficulty, section, explanation, syntax, result, note, mistake] = item;
-    const code = `<style>body{font-family:Arial,sans-serif;padding:1.5rem;color:#172033} .demo{${syntax.replace(/^[^{]+\{?/, "").replace(/\}.*$/, "")}}</style><h1 class="demo">${escapeHtml(title)}</h1><p>نتیجهٔ قابل مشاهدهٔ این تمرین</p>`;
+    const code = `<style>\nbody {\n  font-family: Arial, sans-serif;\n  padding: 1.5rem;\n  color: #172033;\n}\n\n${syntax}\n</style>\n\n<h1 class="demo">${escapeHtml(title)}</h1>\n<p>نتیجهٔ قابل مشاهدهٔ این تمرین</p>`;
     return {
       id: `css-${slug}`, slug: `css-${slug}`, section, number: index + 1, title,
       description, difficulty, timeMinutes: index < 12 ? 8 : 10,

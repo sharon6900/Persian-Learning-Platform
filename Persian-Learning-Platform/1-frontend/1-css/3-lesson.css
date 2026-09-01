@@ -488,6 +488,10 @@
   margin-block-end: var(--space-3);
 }
 
+.course-objectives + .course-section {
+  margin-block-start: var(--space-6);
+}
+
 .course-section {
   margin-block-end: var(--space-6);
 }
